@@ -1,0 +1,54 @@
+<component name="libraryTable">
+  <library name="org.docx4j:docx4j:3.2.1" type="repository">
+    <properties maven-id="org.docx4j:docx4j:3.2.1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/docx4j-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb-svg11-1.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb-xslfo-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxb-xmldsig-core-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mbassador-1.1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jcl-over-slf4j-1.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-log4j12-1.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-io-1.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xmlgraphics-commons-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/fop-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-svg-dom-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-anim-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-awt-util-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-util-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-dom-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-css-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-ext-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-xml-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xalan-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-parser-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-bridge-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-gvt-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-script-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-transcoder-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-svggen-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/batik-extension-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/avalon-framework-api-4.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/avalon-framework-impl-4.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/serializer-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wmf2svg-0.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/poi-scratchpad-3.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/poi-3.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/JAXBNamespacePrefixMapper-2.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/antlr-runtime-3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/stringtemplate-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/antlr-2.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-17.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/docx4j-3.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/docx4j-3.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
