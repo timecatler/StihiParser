@@ -10,22 +10,22 @@ import java.util.ArrayList;
 
 //  Implements default methods of IParser using Jsoup library
 public class CommonParser implements IParser {
-    protected Document _doc = null;
-    protected ArrayList<String> _links = new ArrayList<String>();
+    protected Document Doc = null;
+    protected ArrayList<String> Links = null;
 
     public void printLinks() {
-        if (_links != null) for (String link : _links) System.out.printf(link + '\n');
+        if (Links != null) for (String link : Links) System.out.printf(link + '\n');
     }
 
     public void parseLinks() {
-        if (_doc != null) {
-            Elements links = _doc.select("a[href]");
-            _links = convertLinksToStrings(links);
+        if (Doc != null) {
+            Elements links = Doc.select("a[href]");
+            Links = convertLinksToStrings(links);
         }
     }
 
     public void load(String PageAddress) throws IOException {
-        _doc = Jsoup.connect(PageAddress).get();
+        Doc = Jsoup.connect(PageAddress).get();
     }
 
     static protected ArrayList<String> convertLinksToStrings(Elements links) {
