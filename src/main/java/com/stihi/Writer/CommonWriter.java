@@ -14,10 +14,12 @@ public class CommonWriter {
 
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
+
         for (String line : source) {
             bw.write(line);
             bw.newLine();
         }
+
         bw.close();
         fw.close();
     }

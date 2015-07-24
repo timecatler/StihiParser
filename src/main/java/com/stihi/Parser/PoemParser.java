@@ -7,14 +7,15 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 class PoemParser extends CommonParser {
-    Elements _poem = new Elements();
+    Elements _poem = null;
 
     public Elements parsePoem(String source) throws IOException {
+        _poem = new Elements();
         // This can throw an exception
         load(source);
 
-        Elements poem = _doc.select("h1");
-        poem.addAll(_doc.select("div.text"));
+        Elements poem = Doc.select("h1");
+        poem.addAll(Doc.select("div.text"));
         _poem.addAll(poem);
         return poem;
     }
@@ -26,6 +27,7 @@ class PoemParser extends CommonParser {
     public String getStringPoem() throws IllegalStateException {
         if (_poem.isEmpty()) throw new IllegalStateException("No poem");
         String text = "";
+
         for (Element el : _poem) {
             text += el.toString().replaceAll("<(.*?)>", "").replaceAll("&(.*?);", "") + '\n';
         }
@@ -49,6 +51,8 @@ class PoemParser extends CommonParser {
 
     public Poem getPoem() {
         if (_poem.isEmpty()) throw new IllegalStateException("No poem");
-        return new Poem(getPoemHeader(), getPoemText());
+
+        return new Poem(getPoemHeader(),
+                        getPoemText());
     }
 }

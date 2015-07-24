@@ -25,6 +25,7 @@ public class CommonDocxWriter {
     }
 
     public void saveTo(String path) throws Docx4JException {
+        // TODO: check if file already exists
         wordMLPackage.save(new java.io.File(path));
         System.out.println("Saved to " + path);
     }
