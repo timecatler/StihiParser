@@ -3,6 +3,10 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Unnecessary project files
+.idea/workspace.xml
+.idea/tasks.xml
+
 # Package Files #
 *.jar
 *.war
