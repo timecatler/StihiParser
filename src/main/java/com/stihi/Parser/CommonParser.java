@@ -8,8 +8,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//  Implements default methods of IParser using Jsoup library
-public class CommonParser implements IParser {
+public class CommonParser {
     protected Document Doc = null;
     protected ArrayList<String> Links = null;
 
