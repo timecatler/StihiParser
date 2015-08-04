@@ -1,4 +1,4 @@
-package com.stihi.Interface;
+package com.stihi.UI;
 
 import com.stihi.Parser.AuthorParser;
 
@@ -10,9 +10,8 @@ public class Parser {
         AuthorParser parser = new AuthorParser();
 
         parser.parsePoemLinks(AuthorLink);
-        parser.parsePoems();
 
-        System.out.print("Begin writing\n");
+        System.out.print("End parsing\n");
 
         return parser;
     }

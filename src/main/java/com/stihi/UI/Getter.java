@@ -1,4 +1,4 @@
-package com.stihi.Interface;
+package com.stihi.UI;
 
 import java.util.Scanner;
 

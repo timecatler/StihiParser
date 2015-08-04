@@ -1,4 +1,4 @@
-package com.stihi.Interface;
+package com.stihi.UI;
 
 import com.stihi.Parser.AuthorParser;
 import com.stihi.Writer.CommonDocxWriter;
