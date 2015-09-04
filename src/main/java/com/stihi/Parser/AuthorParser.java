@@ -1,14 +1,9 @@
 package com.stihi.Parser;
 
 import com.stihi.Util.Poem;
-import com.stihi.Writer.CommonDocxWriter;
-import com.stihi.Writer.CommonWriter;
-import org.docx4j.openpackaging.exceptions.Docx4JException;
-import org.docx4j.openpackaging.exceptions.InvalidFormatException;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import javax.xml.soap.SAAJResult;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
