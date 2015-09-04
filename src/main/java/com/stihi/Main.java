@@ -1,13 +1,14 @@
 package com.stihi;
 
-import com.stihi.Interface.Getter;
-import com.stihi.Interface.Parser;
-import com.stihi.Interface.Writer;
-import com.stihi.Parser.AuthorParser;
+import com.stihi.UI.Getter;
+import com.stihi.UI.Parser;
+import com.stihi.UI.Writer;
+import com.stihi.Util.Poem;
 import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.docx4j.openpackaging.exceptions.InvalidFormatException;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Main {
 
@@ -15,12 +16,11 @@ public class Main {
 
         Getter getter = new Getter();
         String AuthorLink = getter.getLink();
-
         Parser parser = new Parser();
         try {
-            AuthorParser author = parser.parseAuthor(AuthorLink);
-            Writer writer = new Writer(author);
-            writer.writePoems(getter.getPath());
+            HashMap<String, Poem> Poems = parser.parse(AuthorLink);
+            Writer writer = new Writer();
+            writer.writePoems(getter.getPath(), Poems);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidFormatException e) {

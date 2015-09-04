@@ -8,26 +8,13 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CommonParser {
-    protected Document Doc = null;
-    protected ArrayList<String> Links = null;
-
-    public void printLinks() {
-        if (Links != null) for (String link : Links) System.out.printf(link + '\n');
+class CommonParser {
+    final protected Document load(String PageURL) throws IOException {
+        Document Doc = Jsoup.connect(PageURL).get();
+        return Doc;
     }
 
-    public void parseLinks() {
-        if (Doc != null) {
-            Elements links = Doc.select("a[href]");
-            Links = convertLinksToStrings(links);
-        }
-    }
-
-    public void load(String PageAddress) throws IOException {
-        Doc = Jsoup.connect(PageAddress).get();
-    }
-
-    static protected ArrayList<String> convertLinksToStrings(Elements links) {
+    final static protected ArrayList<String> convertLinksToStrings(Elements links) {
         ArrayList<String> result = new ArrayList<String>();
         for (Element link : links) {
             result.add(link.attr("abs:href"));

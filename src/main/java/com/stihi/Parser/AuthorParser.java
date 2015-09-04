@@ -5,80 +5,52 @@ import com.stihi.Writer.CommonDocxWriter;
 import com.stihi.Writer.CommonWriter;
 import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.docx4j.openpackaging.exceptions.InvalidFormatException;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import javax.xml.soap.SAAJResult;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AuthorParser extends CommonParser {
-    protected HashMap<String, Poem> Poems = null;
+public final class AuthorParser extends CommonParser {
+    final Integer POEMS_PER_PAGE = 50;
 
-    public void parsePoemLinks(String AuthorPageAddress) throws IOException {
+    private final ArrayList<String> parsePoemURLs(String AuthorPageURL) throws IOException {
+        ArrayList<String> PoemStringURLs = new ArrayList<String>();
         /* Server generates pages with 50 poems on one page
         *  Every page gets an address as .../%author%/&s=%number%
         *  Where %number% = 0 mod 50
         *  Server continues generating pages when poems are over
         */
-        for (Integer i = 0; ; i += 50) {
-            load(AuthorPageAddress + "&s=" + i.toString());
+        for (Integer i = 0; ; i += POEMS_PER_PAGE) {
+            Document PoemsPage = load(AuthorPageURL + "&s=" + i.toString());
             
             /* Links to poems have a poemlink class
             *  That makes life a lot easier
             */
-            if (Doc.select("a[href].poemlink").isEmpty()) return;
+            Elements PoemURLs = PoemsPage.select("a[href].poemlink");
+            if (PoemURLs.isEmpty()) return PoemStringURLs;
 
-            Elements links = Doc.select("a[href].poemlink");
-            Links.addAll(convertLinksToStrings(links));
+            Elements links = PoemsPage.select("a[href].poemlink");
+            PoemStringURLs.addAll(convertLinksToStrings(links));
         }
     }
 
-    public void parsePoems() throws IOException {
-        if (Links !=null) {
-            Poems = new HashMap<String, Poem>();
+    private final HashMap<String, Poem> parsePoems(ArrayList<String> PoemURLs) throws IOException {
+        HashMap<String, Poem> Poems = new HashMap<String, Poem>();
 
-            for (String PoemLink : Links) {
-                PoemParser Parser = new PoemParser();
-
-                Parser.parsePoem(PoemLink);
-                Poems.put(PoemLink, Parser.getPoem());
-            }
+        for (String URL : PoemURLs) {
+            PoemParser Parser = new PoemParser();
+            Poems.put(URL, Parser.parse(URL));
         }
+
+        return Poems;
     }
 
-    protected ArrayList<String> getStringPoems() {
-        ArrayList<String> result = new ArrayList<String>();
-        for (String link : Links) {
-            //  This one was made for testing purposes so it is not fancy at all
-            result.add(link + "\n\n" + Poems.get(link).toString() + "\n==============\n");
-        }
-        return result;
-    }
-
-    public class PoemsWriter extends CommonWriter {
-        public void writePoems(String path) throws IOException {
-            writeStrings(path, getStringPoems());
-        }
-    }
-
-    public class PoemsDocxWriter extends CommonDocxWriter {
-
-        public PoemsDocxWriter() throws InvalidFormatException {
-            super();
-        }
-
-        public void addPoem(Poem poem) {
-            addSubtitleParagraph(poem.getHeader());
-            addParagraph(poem.getText());
-        }
-
-        public void writePoems(String path) throws Docx4JException {
-            for (String link : Links) {
-                addPoem(Poems.get(link));
-                addParagraph(link + "\n\n");
-            }
-            saveTo(path);
-        }
-
+    public final HashMap<String, Poem> parse(String AuthorURL) throws IOException {
+        ArrayList<String> poemURLs = parsePoemURLs(AuthorURL);
+        HashMap<String, Poem> Poems = parsePoems(poemURLs);
+        return Poems;
     }
 }

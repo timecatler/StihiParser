@@ -1,6 +1,6 @@
 package com.stihi.Util;
 
-public class Poem {
+public final class Poem {
 
     private String Header = null;
     private String Text = null;
@@ -10,19 +10,19 @@ public class Poem {
         Text = text;
     }
 
-    public String getHeader() {
+    public final String getHeader() {
         return Header;
     }
 
-    public String getText() {
+    public final String getText() {
         return Text;
     }
 
-    public void setHeader(String header) {
+    public final void setHeader(String header) {
         Header = header;
     }
 
-    public void setText(String text) {
+    public final void setText(String text) {
         Text = text;
     }
 

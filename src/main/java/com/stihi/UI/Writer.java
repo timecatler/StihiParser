@@ -1,22 +1,16 @@
 package com.stihi.UI;
 
-import com.stihi.Parser.AuthorParser;
-import com.stihi.Writer.CommonDocxWriter;
+import com.stihi.Util.Poem;
+import com.stihi.Writer.PoemsDocxWriter;
 import org.docx4j.openpackaging.exceptions.Docx4JException;
-import org.docx4j.openpackaging.exceptions.InvalidFormatException;
 
-public class Writer {
-    CommonDocxWriter FancyWriter = null;
-    AuthorParser Author = null;
+import java.util.HashMap;
 
-    public Writer(AuthorParser author) throws InvalidFormatException {
-        Author = author;
-        FancyWriter = Author.new PoemsDocxWriter();
-    }
-
-    public void writePoems(String path) throws Docx4JException {
+public final class Writer {
+    public final void writePoems(String path, HashMap<String, Poem> Poems) throws Docx4JException {
         System.out.print("Begin writing\n");
         //  Next method prints when saves successfully
-        FancyWriter.saveTo(path);
+        PoemsDocxWriter writer = new PoemsDocxWriter();
+        writer.writePoems(path, Poems);
     }
 }
