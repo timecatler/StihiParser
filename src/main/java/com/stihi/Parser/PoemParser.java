@@ -1,54 +1,54 @@
 package com.stihi.Parser;
 
 import com.stihi.Util.Poem;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-class PoemParser extends CommonParser {
-    Elements _poem = new Elements();
+public final class PoemParser extends CommonParser {
 
-    public Elements parsePoem(String source) throws IOException {
+    private final Elements parsePoem(String PoemPageURL) throws IOException {
         // This can throw an exception
-        load(source);
+        Document PoemPage = load(PoemPageURL);
 
-        Elements poem = _doc.select("h1");
-        poem.addAll(_doc.select("div.text"));
-        _poem.addAll(poem);
+        Elements poem = PoemPage.select("h1");
+        poem.addAll(PoemPage.select("div.text"));
+
         return poem;
     }
 
-    public void printPoem() throws IllegalStateException {
-        System.out.print(getStringPoem());
-    }
-
-    public String getStringPoem() throws IllegalStateException {
-        if (_poem.isEmpty()) throw new IllegalStateException("No poem");
+    private static final String convertPoemToString(Elements Poem) throws IllegalStateException {
         String text = "";
-        for (Element el : _poem) {
+        if (Poem == null || Poem.isEmpty()) return text;
+        for (Element el : Poem) {
             text += el.toString().replaceAll("<(.*?)>", "").replaceAll("&(.*?);", "") + '\n';
         }
+
         return text;
     }
 
-    public String getPoemHeader() {
-        if (_poem.isEmpty()) throw new IllegalStateException("No poem");
-        return _poem.first().toString().replaceAll("<(.*?)>", "").replaceAll("&(.*?);", "");
+    private static final String getPoemHeader(Elements Poem) {
+        return Poem.first().toString().replaceAll("<(.*?)>", "").replaceAll("&(.*?);", "");
     }
 
-    public String getPoemText() {
-        if (_poem.isEmpty()) throw new IllegalStateException("No poem");
+    private static final String getPoemText(Elements Poem) {
         String text = "";
-        for (Element el : _poem) {
-            if (el == _poem.first()) continue;
+        if (Poem == null || Poem.isEmpty()) return text;
+        for (Element el : Poem) {
+            if (el == Poem.first()) continue;
             text += el.toString().replaceAll("<(.*?)>", "").replaceAll("&(.*?);", "");
         }
         return text;
     }
 
-    public Poem getPoem() {
-        if (_poem.isEmpty()) throw new IllegalStateException("No poem");
-        return new Poem(getPoemHeader(), getPoemText());
+    private static final Poem getPoem(Elements poem) {
+        return new Poem(getPoemHeader(poem),
+                        getPoemText(poem));
+    }
+
+    public final Poem parse(String PoemURL) throws IOException {
+        return getPoem(parsePoem(PoemURL));
     }
 }
